@@ -2,6 +2,7 @@ import utils
 import os
 import time
 import boto3
+import schedule
 
 
 def clustering():
@@ -24,3 +25,5 @@ def clustering():
     else:
         print(f'Result of clustering at {current_time} is uploaded')
 
+
+schedule.every().day.at("00:00").do(clustering)
