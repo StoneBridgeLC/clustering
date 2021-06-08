@@ -26,4 +26,8 @@ def clustering():
         print(f'Result of clustering at {current_time} is uploaded')
 
 
-schedule.every().day.at("00:00").do(clustering)
+schedule.every().day.at("10:33").do(clustering)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)

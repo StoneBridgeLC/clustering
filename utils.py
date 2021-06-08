@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 import hdbscan
-from eunjeon import Mecab
+from konlpy.tag import Mecab
 import requests
 
 
