@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 import hdbscan
-from konlpy.tag import Okt
+from eunjeon import Mecab
 import requests
 
 
@@ -21,9 +21,9 @@ def get_data_from_api(url):
 
 
 def generate_tfidf(df, min_df=0.01, max_df=0.8):
-    okt = Okt()
+    mecab = Mecab()
     print('Generate tf-idf vector...')
-    tfidf_vect = TfidfVectorizer(tokenizer=okt.morphs,
+    tfidf_vect = TfidfVectorizer(tokenizer=mecab.morphs,
                                  ngram_range=(1, 2),
                                  min_df=min_df, max_df=max_df)
 
@@ -33,7 +33,7 @@ def generate_tfidf(df, min_df=0.01, max_df=0.8):
     return ftr_vect
 
 
-def cluster_to_csv(vect, df, min_cluster_size=12):
+def cluster_to_csv(vect, df, min_cluster_size=20):
     print('Start clustering....')
     cluster = hdbscan.HDBSCAN(min_cluster_size=min_cluster_size, gen_min_span_tree=True)
     res = cluster.fit(vect)
