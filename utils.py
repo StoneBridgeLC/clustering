@@ -36,6 +36,7 @@ def generate_tfidf(df, min_df=0.01, max_df=0.8):
 def cluster_to_csv(vect, df, min_cluster_size=20):
     print('Start clustering....')
     cluster = hdbscan.HDBSCAN(min_cluster_size=min_cluster_size, gen_min_span_tree=True)
+    print('Clustering is finished.')
     res = cluster.fit(vect)
     df['label'] = res.labels_
     print('Clustering is finished.')
